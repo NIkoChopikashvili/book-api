@@ -1,4 +1,4 @@
-# Croco Book API
+# Book API
 
 RESTful API for managing books and pages.
 
@@ -19,21 +19,33 @@ RESTful API for managing books and pages.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/croco-book.git
+   git clone https://github.com/NIkoChopikashvili/book-api.git
 
    ```
 
 2. **Install dependencies:**
-   cd croco-book
-   npm install
+   ```bash
+   cd book-api
+   yarn
 
-3. **Set up database:**
+   ```
+
+
+4. **Set up database:**
    Update database configuration in config/db-setup.js
+   
 
-4. **Run the application:**
-   yarn start
+5. **Run the application:**
+    ```bash
+    yarn start
 
-### Endpoints
+    ```
 
-    - View Swagger YAML file.
-    - Explore API documentation with Swagger UI.
+   **Run tests:**
+    ```bash
+    yarn e2e-test
+
+    ```
+
+- [View Swagger YAML file](./src/swagger.yaml).
+- Explore API documentation with [Swagger UI](http://localhost:3000/api-docs).
