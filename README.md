@@ -19,7 +19,7 @@ RESTful API for managing books and pages.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/croco-book.git
+   git clone https://github.com/NIkoChopikashvili/croco-book.git
 
    ```
 
@@ -33,6 +33,7 @@ RESTful API for managing books and pages.
 
 4. **Set up database:**
    Update database configuration in config/db-setup.js
+   
 
 5. **Run the application:**
  ```bash
