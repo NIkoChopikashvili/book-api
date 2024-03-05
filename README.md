@@ -36,10 +36,10 @@ RESTful API for managing books and pages.
    
 
 5. **Run the application:**
- ```bash
-   yarn start
+    ```bash
+    yarn start
 
-   ```
+    ```
 
 ### Endpoints
 
