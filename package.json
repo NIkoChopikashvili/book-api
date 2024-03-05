@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha",
-    "dev": "nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "e2e-test": "mocha src/tests/api.test.js"
   },
   "dependencies": {
