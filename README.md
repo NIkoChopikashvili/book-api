@@ -41,7 +41,5 @@ RESTful API for managing books and pages.
 
     ```
 
-### Endpoints
-
-- View Swagger YAML file.
-- Explore API documentation with Swagger UI.
+- [View Swagger YAML file](./src/swagger.yaml).
+- Explore API documentation with [Swagger UI](http://localhost:3000/api-docs).
