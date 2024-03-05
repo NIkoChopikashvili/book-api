@@ -21,7 +21,7 @@ router.get("/book/:id", bookDetails);
 router.get("/books", books);
 
 // DELETE
-router.delete("/book/:id", deleteBook);
+router.delete("/book/:id", authHandler, deleteBook);
 
 // PUT
 router.put("/book/:id", authHandler, updateBook);
