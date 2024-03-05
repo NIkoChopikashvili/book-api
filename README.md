@@ -24,16 +24,23 @@ RESTful API for managing books and pages.
    ```
 
 2. **Install dependencies:**
+   ```bash
    cd croco-book
-   npm install
+   yarn
 
-3. **Set up database:**
+   ```
+
+
+4. **Set up database:**
    Update database configuration in config/db-setup.js
 
-4. **Run the application:**
+5. **Run the application:**
+ ```bash
    yarn start
+
+   ```
 
 ### Endpoints
 
-    - View Swagger YAML file.
-    - Explore API documentation with Swagger UI.
+- View Swagger YAML file.
+- Explore API documentation with Swagger UI.
