@@ -41,5 +41,11 @@ RESTful API for managing books and pages.
 
     ```
 
+   **Run tests:**
+    ```bash
+    yarn e2e-test
+
+    ```
+
 - [View Swagger YAML file](./src/swagger.yaml).
 - Explore API documentation with [Swagger UI](http://localhost:3000/api-docs).
