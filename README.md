@@ -1,4 +1,4 @@
-# Croco Book API
+# Book API
 
 RESTful API for managing books and pages.
 
@@ -19,13 +19,13 @@ RESTful API for managing books and pages.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/NIkoChopikashvili/croco-book.git
+   git clone https://github.com/NIkoChopikashvili/book-api.git
 
    ```
 
 2. **Install dependencies:**
    ```bash
-   cd croco-book
+   cd book-api
    yarn
 
    ```
