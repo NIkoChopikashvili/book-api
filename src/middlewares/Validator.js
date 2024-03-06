@@ -19,6 +19,7 @@ module.exports = function Validator(validator) {
       const validated = await validator.validateAsync(target);
       req.body = validated.body || {};
       req.query = validated.query || {};
+      req.params = validated.params || {};
       next();
     } catch (err) {
       return next(err);

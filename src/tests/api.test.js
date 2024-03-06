@@ -81,7 +81,6 @@ describe("Croco Book API", () => {
         .set("Cookie", `token=${authToken}`)
         .send(newBook)
         .end((err, res) => {
-          console.log(res.body);
           res.should.have.status(201);
           res.body.should.be.a("object");
           res.body.should.have.property("result").eql("Success");
@@ -99,7 +98,6 @@ describe("Croco Book API", () => {
         .get(`/page/${bookId}`)
         .set("Cookie", `token=${authToken}`)
         .end((err, res) => {
-          console.log(bookId);
           res.should.have.status(200);
           res.body.should.be.a("object");
           res.body.should.have.property("result").eql("Success");
