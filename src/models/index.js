@@ -8,6 +8,7 @@ const db = {
   BookModel: require("./Book.Model")(sequelize),
   PageModel: require("./Page.Model")(sequelize),
   UserModel: require("./User.Model")(sequelize),
+  LastReadModel: require("./LastRead.model")(sequelize),
 };
 
 // Associate models

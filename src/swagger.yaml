@@ -51,6 +51,21 @@ paths:
   /books:
     get:
       summary: Get all books
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            default: 10
       responses:
         "200":
           description: Successful response
@@ -93,7 +108,7 @@ paths:
             application/json:
               example:
                 result: Success
-                bookId: 2
+                bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
       security:
         - cookieAuth: []
 
@@ -115,7 +130,7 @@ paths:
               example:
                 result: Success
                 book:
-                  id: 1
+                  id: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                   title: "Sample Book"
                   author: "John Doe"
                   lastReadPage: null
@@ -186,7 +201,7 @@ paths:
               example:
                 result: Success
                 book:
-                  id: 1
+                  id: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                   title: "Sample Book"
                   author: "John Doe"
                   lastReadPage: null
@@ -235,10 +250,12 @@ paths:
                   updatedAt: "2024-03-01T12:00:00Z"
       security:
         - cookieAuth: []
+
+  /page/{bookId}:
     get:
       summary: Get next page by bookId. And update last read page field.
       parameters:
-        - name: id
+        - name: bookId
           in: path
           required: true
           schema:
@@ -252,8 +269,8 @@ paths:
               example:
                 result: Success
                 page:
-                  id: 1
-                  bookId: 1
+                  id: "ec933f1f-93bb-493d-80da-eb3e523f2f51"
+                  bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                   content: "CONTENT"
                   page: 1
                   createdAt: "2024-03-01T12:00:00Z"

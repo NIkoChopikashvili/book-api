@@ -6,10 +6,18 @@ const {
   books,
   updateBook,
   updatePage,
-  readPage,
+  readBook,
 } = require("../controllers/books.controllers");
 const { authHandler, Validator } = require("../middlewares");
-const { createBookValidation } = require("../validations");
+const {
+  createBookValidation,
+  updateBookValidation,
+  updatePageValidation,
+  deleteBookValidation,
+  bookDetailsValidation,
+  readPageValidation,
+  getBooksValidation,
+} = require("../validations");
 
 const router = express.Router();
 
@@ -17,15 +25,35 @@ const router = express.Router();
 router.post("/book", Validator(createBookValidation), authHandler, createBook);
 
 // GET
-router.get("/book/:id", bookDetails);
-router.get("/page/:id", readPage);
-router.get("/books", books);
+router.get("/book/:id", Validator(bookDetailsValidation), bookDetails);
+router.get(
+  "/page/:bookId",
+  Validator(readPageValidation),
+  authHandler,
+  readBook
+);
+router.get("/books", Validator(getBooksValidation), books);
 
 // DELETE
-router.delete("/book/:id", authHandler, deleteBook);
+router.delete(
+  "/book/:id",
+  Validator(deleteBookValidation),
+  authHandler,
+  deleteBook
+);
 
 // PUT
-router.put("/book/:id", authHandler, updateBook);
-router.put("/page/:id", authHandler, updatePage);
+router.put(
+  "/book/:id",
+  Validator(updateBookValidation),
+  authHandler,
+  updateBook
+);
+router.put(
+  "/page/:id",
+  Validator(updatePageValidation),
+  authHandler,
+  updatePage
+);
 
 module.exports = router;

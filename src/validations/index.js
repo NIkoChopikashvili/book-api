@@ -1,4 +1,12 @@
-const { createBookValidation } = require("./book.validation");
+const {
+  createBookValidation,
+  updateBookValidation,
+  updatePageValidation,
+  deleteBookValidation,
+  bookDetailsValidation,
+  readPageValidation,
+  getBooksValidation,
+} = require("./book.validation");
 const {
   createUserValidation,
   userSignInValidation,
@@ -7,4 +15,10 @@ module.exports = {
   createBookValidation,
   createUserValidation,
   userSignInValidation,
+  updateBookValidation,
+  updatePageValidation,
+  deleteBookValidation,
+  bookDetailsValidation,
+  readPageValidation,
+  getBooksValidation,
 };

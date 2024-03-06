@@ -63,7 +63,16 @@ describe("Croco Book API", () => {
     it("should create a new book", (done) => {
       const newBook = {
         title: "Test Book",
-        pages: [{ page: 1, content: "Page 1 content" }],
+        pages: [
+          {
+            page: 1,
+            content: "Page 1 content",
+          },
+          {
+            page: 2,
+            content: "Page 2 content",
+          },
+        ],
       };
 
       chai
@@ -72,11 +81,29 @@ describe("Croco Book API", () => {
         .set("Cookie", `token=${authToken}`)
         .send(newBook)
         .end((err, res) => {
+          console.log(res.body);
           res.should.have.status(201);
           res.body.should.be.a("object");
           res.body.should.have.property("result").eql("Success");
           res.body.should.have.property("bookId");
           bookId = res.body.bookId;
+          done();
+        });
+    });
+  });
+
+  describe("/page/{id}", () => {
+    it("should return next page By bookId", (done) => {
+      chai
+        .request(app)
+        .get(`/page/${bookId}`)
+        .set("Cookie", `token=${authToken}`)
+        .end((err, res) => {
+          console.log(bookId);
+          res.should.have.status(200);
+          res.body.should.be.a("object");
+          res.body.should.have.property("result").eql("Success");
+          res.body.should.have.property("page");
           done();
         });
     });

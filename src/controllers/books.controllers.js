@@ -1,5 +1,5 @@
 const { sq } = require("../config/db-setup");
-const { PageModel, BookModel } = require("../models");
+const { PageModel, BookModel, LastReadModel } = require("../models");
 const { resultCodes } = require("../enums");
 const { BookNotFound, PageNotFound } = require("../exceptions");
 
@@ -178,25 +178,27 @@ exports.books = async (req, res, next) => {
  * @param {import('express').Response} res
  * @param {import('express').NextFunction} next
  */
-exports.readPage = async (req, res, next) => {
-  const bookId = req.params.id;
+exports.readBook = async (req, res, next) => {
+  const bookId = req.params.bookId;
+  const { userId } = req.user;
   try {
     if (!bookId) throw new BookNotFound("Could not find book with that id.");
 
-    const book = await BookModel.findByPk(bookId);
+    let lastRead = await LastReadModel.findOne({ where: { bookId, userId } });
 
-    if (!book) throw new BookNotFound("Could not find book with that id.");
+    if (!lastRead)
+      lastRead = await LastReadModel.create({ userId, bookId, page: 0 });
 
     const page = await PageModel.findOne({
-      where: { bookId, page: book.lastReadPage + 1 },
+      where: { bookId, page: lastRead.page + 1 },
     });
 
     if (!page) throw new PageNotFound("This was the last page of the book.");
 
-    book.lastReadPage = book.lastReadPage + 1;
+    lastRead.page = lastRead.page + 1;
 
     // Save the changes
-    await book.save();
+    await lastRead.save();
 
     return res.status(200).json({
       result: resultCodes.SUCCESS,

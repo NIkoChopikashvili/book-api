@@ -11,17 +11,17 @@ module.exports = function Validator(validator) {
 
   return async function (req, res, next) {
     try {
-      const { body, query } = req;
-      const target = { body: {}, query: {} };
+      const { body, query, params } = req;
+      const target = {};
       if (!isEmpty(body)) target.body = body;
       if (!isEmpty(query)) target.query = query;
-
+      if (!isEmpty(params)) target.params = params;
       const validated = await validator.validateAsync(target);
       req.body = validated.body || {};
       req.query = validated.query || {};
       next();
     } catch (err) {
-      return next();
+      return next(err);
     }
   };
 };
