@@ -13,7 +13,7 @@ exports.createBook = async (req, res, next) => {
   const { title, pages } = req.body;
   try {
     const book = await BookModel.create(
-      { title, author: req.user.username },
+      { title, author: req.user.username, lastReadPage: 0 },
       { transaction: t }
     );
 
@@ -120,13 +120,11 @@ exports.updatePage = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    // Find the specific page to update
     const pageToUpdate = await PageModel.findByPk(id);
 
     if (!pageToUpdate)
       throw new PageNotFound("Could not find page with that id.");
 
-    // Update page information based on the request payload
     pageToUpdate.content = content || pageToUpdate.content;
     pageToUpdate.page = page || pageToUpdate.page;
 
@@ -169,6 +167,40 @@ exports.books = async (req, res, next) => {
       books,
       totalPages,
       currentPage: page,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next
+ */
+exports.readPage = async (req, res, next) => {
+  const bookId = req.params.id;
+  try {
+    if (!bookId) throw new BookNotFound("Could not find book with that id.");
+
+    const book = await BookModel.findByPk(bookId);
+
+    if (!book) throw new BookNotFound("Could not find book with that id.");
+
+    const page = await PageModel.findOne({
+      where: { bookId, page: book.lastReadPage + 1 },
+    });
+
+    if (!page) throw new PageNotFound("This was the last page of the book.");
+
+    book.lastReadPage = book.lastReadPage + 1;
+
+    // Save the changes
+    await book.save();
+
+    return res.status(200).json({
+      result: resultCodes.SUCCESS,
+      page,
     });
   } catch (err) {
     next(err);

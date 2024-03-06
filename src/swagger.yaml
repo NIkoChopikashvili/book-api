@@ -57,7 +57,7 @@ paths:
           content:
             application/json:
               example:
-                result: SUCCESS
+                result: Success
                 books:
                   - id: "095d3662-bf76-42dc-b690-ea376a56e007"
                     title: "Sample Book"
@@ -66,8 +66,8 @@ paths:
                     createdAt: "2024-03-01T12:00:00Z"
                     updatedAt: "2024-03-01T12:00:00Z"
                     pages:
-                      - id: 1
-                        bookId: 1
+                      - id: "ec933f1f-93bb-493d-80da-eb3e523f2f51"
+                        bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                         content: "Page 1 content"
                         page: 1
                         createdAt: "2024-03-01T12:00:00Z"
@@ -92,7 +92,7 @@ paths:
           content:
             application/json:
               example:
-                result: SUCCESS
+                result: Success
                 bookId: 2
       security:
         - cookieAuth: []
@@ -113,7 +113,7 @@ paths:
           content:
             application/json:
               example:
-                result: SUCCESS
+                result: Success
                 book:
                   id: 1
                   title: "Sample Book"
@@ -122,8 +122,8 @@ paths:
                   createdAt: "2024-03-01T12:00:00Z"
                   updatedAt: "2024-03-01T12:00:00Z"
                   pages:
-                    - id: 1
-                      bookId: 1
+                    - id: "ec933f1f-93bb-493d-80da-eb3e523f2f51"
+                      bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                       content: "Page 1 content"
                       page: 1
                       createdAt: "2024-03-01T12:00:00Z"
@@ -152,17 +152,17 @@ paths:
           content:
             application/json:
               example:
-                result: SUCCESS
+                result: Success
                 book:
-                  id: 1
+                  id: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                   title: "Updated Book Title"
                   author: "Updated Author"
                   lastReadPage: null
                   createdAt: "2024-03-01T12:00:00Z"
                   updatedAt: "2024-03-01T12:00:00Z"
                   pages:
-                    - id: 1
-                      bookId: 1
+                    - id: "ec933f1f-93bb-493d-80da-eb3e523f2f51"
+                      bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                       content: "Page 1 content"
                       page: 1
                       createdAt: "2024-03-01T12:00:00Z"
@@ -184,7 +184,7 @@ paths:
           content:
             application/json:
               example:
-                result: SUCCESS
+                result: Success
                 book:
                   id: 1
                   title: "Sample Book"
@@ -193,8 +193,8 @@ paths:
                   createdAt: "2024-03-01T12:00:00Z"
                   updatedAt: "2024-03-01T12:00:00Z"
                   pages:
-                    - id: 1
-                      bookId: 1
+                    - id: "ec933f1f-93bb-493d-80da-eb3e523f2f51"
+                      bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
                       content: "Page 1 content"
                       page: 1
                       createdAt: "2024-03-01T12:00:00Z"
@@ -225,11 +225,36 @@ paths:
           content:
             application/json:
               example:
-                result: SUCCESS
+                result: Success
+                page:
+                  id: "ec933f1f-93bb-493d-80da-eb3e523f2f51"
+                  bookId: "177dc701-3448-4d3a-b107-3d4fddfaecda"
+                  content: "Updated Page Content"
+                  page: 1
+                  createdAt: "2024-03-01T12:00:00Z"
+                  updatedAt: "2024-03-01T12:00:00Z"
+      security:
+        - cookieAuth: []
+    get:
+      summary: Get next page by bookId. And update last read page field.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "177dc701-3448-4d3a-b107-3d4fddfaecda"
+      responses:
+        "200":
+          description: Page updated successfully
+          content:
+            application/json:
+              example:
+                result: Success
                 page:
                   id: 1
                   bookId: 1
-                  content: "Updated Page Content"
+                  content: "CONTENT"
                   page: 1
                   createdAt: "2024-03-01T12:00:00Z"
                   updatedAt: "2024-03-01T12:00:00Z"

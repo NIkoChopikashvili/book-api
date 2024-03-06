@@ -6,6 +6,7 @@ const {
   books,
   updateBook,
   updatePage,
+  readPage,
 } = require("../controllers/books.controllers");
 const { authHandler, Validator } = require("../middlewares");
 const { createBookValidation } = require("../validations");
@@ -13,11 +14,11 @@ const { createBookValidation } = require("../validations");
 const router = express.Router();
 
 // POST
-// CHECK - AUTH
 router.post("/book", Validator(createBookValidation), authHandler, createBook);
 
 // GET
 router.get("/book/:id", bookDetails);
+router.get("/page/:id", readPage);
 router.get("/books", books);
 
 // DELETE

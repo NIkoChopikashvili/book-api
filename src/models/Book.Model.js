@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
       },
       title: { type: DataTypes.STRING, allowNull: false },
       author: DataTypes.STRING,
-      lastReadPage: DataTypes.UUID,
+      lastReadPage: DataTypes.INTEGER,
     },
     {
       sequelize,
